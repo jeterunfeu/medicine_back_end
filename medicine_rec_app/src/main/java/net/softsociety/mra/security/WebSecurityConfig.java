@@ -11,6 +11,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 /**
  * Security 설정
  */
@@ -26,6 +27,7 @@ public class WebSecurityConfig {
         .authorizeRequests()
         .antMatchers("/",
         		"/index.html",
+        		"/signUp.html",
                 "/asset/**",
                 "/css/**",
                 "/js/**").permitAll()		//설정한 리소스의 접근을 인증절차 없이 허용

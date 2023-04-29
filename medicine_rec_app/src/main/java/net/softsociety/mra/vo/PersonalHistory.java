@@ -7,14 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MediMember {
+public class PersonalHistory {
+	int historynum;
 	int membernum;
-	String memberid;
-	String memberpw;
-	String membername;
-	String email;
-	String phone;
-	String address;
-	boolean enabled;
-	String rolename;
+	int signnum;
+	int mednum;
+	String inputdate;
 }
