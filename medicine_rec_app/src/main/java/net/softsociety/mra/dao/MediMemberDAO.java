@@ -13,10 +13,10 @@ public interface MediMemberDAO {
 
 	MediMember selectOne(int seq);
 
-	boolean insertMember(MediMember member);
+	int insertMember(MediMember member);
 
-	boolean updateMember(MediMember member);
+	int updateMember(MediMember member);
 
-	boolean delteMember(int seq);
+	int delteMember(int seq);
 
 }

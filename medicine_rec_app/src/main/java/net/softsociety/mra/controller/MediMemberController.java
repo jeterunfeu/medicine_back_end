@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.MediMemberService;
@@ -25,6 +26,7 @@ public class MediMemberController {
 	MediMemberService service;
 	
 	@GetMapping()
+	@ResponseBody()
 	public List<MediMember> selectAll(){
 		
 		List<MediMember> result = service.listMediMember();
@@ -33,6 +35,7 @@ public class MediMemberController {
 	}
 
 	@GetMapping("/{seq}")
+	@ResponseBody()
 	public MediMember selectOne(@PathVariable("seq") int seq) {
 		
 		MediMember result = service.SelectOne(seq);
@@ -42,7 +45,10 @@ public class MediMemberController {
 	}
 
 	@PostMapping()
+	@ResponseBody()
 	public boolean insert(@RequestBody MediMember member) {
+		
+		log.info("member : {} ", member);
 		
 		boolean result = service.insertMember(member);
 		
@@ -50,6 +56,7 @@ public class MediMemberController {
 	}
 	
 	@PutMapping("/{seq}")
+	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody MediMember member) {
 		
 		member.setMembernum(seq);
@@ -60,6 +67,7 @@ public class MediMemberController {
 	}
 	
 	@DeleteMapping("/{seq}")
+	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deleteMember(seq);

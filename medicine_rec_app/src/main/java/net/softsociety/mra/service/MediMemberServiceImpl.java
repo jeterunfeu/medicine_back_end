@@ -39,20 +39,20 @@ public class MediMemberServiceImpl implements MediMemberService {
 		member.setMemberpw(encoderedPw);
 				
 			
-		boolean result = dao.insertMember(member);
-		return result;
+		int result = dao.insertMember(member);
+		return result == 0 ? false : true;
 	}
 
 	@Override
 	public boolean updateMember(MediMember member) {
-		boolean result = dao.updateMember(member);
-		return result;
+		int result = dao.updateMember(member);
+		return result == 0 ? false : true;
 	}
 
 	@Override
 	public boolean deleteMember(int seq) {
-		boolean result = dao.delteMember(seq);
-		return result;
+		int result = dao.delteMember(seq);
+		return result == 0 ? false : true;
 	}
 
 	

@@ -2,51 +2,66 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="net.softsociety.mra.dao.MediMemberDAO">
 	<select id="selectAll" resultType="MediMember">
-		select * from medi_member order by membernum desc
+		select * from medi_member
+		order by membernum desc
 	</select>
-	
-	<select id="selectOne" parameterType="int" resultType="MediMember">
+
+	<select id="selectOne" parameterType="int"
+		resultType="MediMember">
 		select * from medi_member where membernum = #{membernum}
 	</select>
-	
+
 	<insert id="insertMember" parameterType="MediMember">
-		insert into medi_member
-			membernum
-			, memberid
-			, memberpw
-			, membername
+		insert into medi_member(
+		membernum
+		, memberid
+		, memberpw
+		, membername
+		<if test="email!=null">
 			, email
+		</if>
+		<if test="phone!=null">
 			, phone
+		</if>
+		<if test="address!=null">
 			, address
+		</if>
+		)
 		values (
-			 medi_member_seq.nextval
-			, #{memberid}
-			, #{memberpw}
-			, #{membername}
+		medi_member_seq.nextval
+		, #{memberid}
+		, #{memberpw}
+		, #{membername}
+		<if test="email!=null">
 			, #{email}
+		</if>
+		<if test="phone!=null">
 			, #{phone}
+		</if>
+		<if test="address!=null">
 			, #{address}
+		</if>
 		)
 	</insert>
-	
+
 	<update id="updateMember" parameterType="int">
 		update medi_member set
-			mamberpw = #{memberpw}
-			, membername = #{membername}
-			, email = #{email}
-			, phone = #{phone}
-			, address = #{address}
+		mamberpw = #{memberpw}
+		, membername = #{membername}
+		, email = #{email}
+		, phone = #{phone}
+		, address = #{address}
 		where
-			membernum = #{membernum} 
+		membernum = #{membernum}
 	</update>
-	
+
 	<delete id="deleteMember" parameterType="int">
-		delete 
-			from medi_member
+		delete
+		from medi_member
 		where
-			membernum = #{membernum}
+		membernum = #{membernum}
 	</delete>
 </mapper>
