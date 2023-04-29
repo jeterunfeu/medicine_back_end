@@ -13,50 +13,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
-import net.softsociety.mra.service.ShowSignService;
-import net.softsociety.mra.vo.Medicine;
-import net.softsociety.mra.vo.ShowSign;
-
+import net.softsociety.mra.service.SurveyService;
+import net.softsociety.mra.vo.Survey;
 
 @Slf4j
 @Controller
-@RequestMapping("showsign")
-public class ShowSignController {
+@RequestMapping("survey")
+public class SurveyController {
 
 	@Autowired
-	ShowSignService  service;
+	SurveyService service;
 	
 	@GetMapping()
-	public List<ShowSign> selectAll(){
+	public List<Survey> selectAll(){
 		
-		List<ShowSign> result = service.selectAll();
+		List<Survey> result = service.selectAll();
 		
 		return result;
 	}
 
 	@GetMapping("/{seq}")
-	public ShowSign selectOne(@PathVariable("seq") int seq) {
+	public Survey selectOne(@PathVariable("seq") int seq) {
 		
-		ShowSign result = service.selectOne(seq);
+		Survey result = service.selectOne(seq);
 		
 		return result;
 		
 	}
 
 	@PostMapping()
-	public boolean insert(@RequestBody ShowSign showsign) {
+	public boolean insert(@RequestBody Survey survey) {
 		
-		boolean result = service.insertShowSign(showsign);
+		boolean result = service.insertSurvey(survey);
 		
 		return result;
 	}
 	
 	@PutMapping("/{seq}")
-	public boolean update(@PathVariable("seq") int seq, @RequestBody ShowSign showsign) {
+	public boolean update(@PathVariable("seq") int seq, @RequestBody Survey survey) {
 		
-		showsign.setSignnum(seq);
+		survey.setSurveynum(seq);
 		
-		boolean result = service.updateShowSign(showsign);
+		boolean result = service.updateSurvey(survey);
 		
 		return result;
 	}
@@ -64,7 +62,7 @@ public class ShowSignController {
 	@DeleteMapping("/{seq}")
 	public boolean delete(@PathVariable("seq") int seq) {
 		
-		boolean result = service.deleteShowSign(seq);
+		boolean result = service.deleteSurvey(seq);
 		
 		return result;
 	}
