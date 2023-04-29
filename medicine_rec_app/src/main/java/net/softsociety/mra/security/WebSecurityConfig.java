@@ -35,6 +35,7 @@ public class WebSecurityConfig {
         .loginPage("/index.html")		//시큐리티에서 제공하는 기본 폼이 아닌 사용자가 만든 폼 사용
         .loginProcessingUrl("/member/login").permitAll()	//인증 처리를 하는 URL을 설정. 로그인 폼의 action으로 지정
         .defaultSuccessUrl("/list.html")
+        .failureUrl("/index.html")
         .usernameParameter("memberid")		//로그인폼의 아이디 입력란의 name
         .passwordParameter("memberpw")		//로그인폼의 비밀번호 입력란의 name
         .and()
