@@ -10,8 +10,11 @@
 		by signnum desc
 	</select>
 
-	<select id="selectAllByGroup" resultType="ShowSign">
+	<select id="selectAllByGroup" resultType="ShowSign" parameterType="String">
 		select signpart, signfirst, signsecond from show_sign group by signpart, signfirst, signsecond
+		<if test = "part != 'null'">
+			having signpart = #{part}
+		</if>
 	</select>
 
 	<select id="selectOne" parameterType="int" resultType="ShowSign">

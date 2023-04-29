@@ -16,6 +16,6 @@ public interface ShowSignService {
 
 	boolean deleteShowSign(int seq);
 
-	List<ShowSign> selectAllByGroup();
+	List<ShowSign> selectAllByGroup(String part);
 
 }

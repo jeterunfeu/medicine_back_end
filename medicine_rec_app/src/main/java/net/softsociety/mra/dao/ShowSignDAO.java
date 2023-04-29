@@ -19,6 +19,6 @@ public interface ShowSignDAO {
 
 	boolean deleteShowSign(int seq);
 
-	List<ShowSign> selectAllByGroup();
+	List<ShowSign> selectAllByGroup(String part);
 
 }

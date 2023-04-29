@@ -12,4 +12,5 @@ public class Survey {
 	String question;
 	int truenum;
 	int falsenum;
+	int signnum;
 }

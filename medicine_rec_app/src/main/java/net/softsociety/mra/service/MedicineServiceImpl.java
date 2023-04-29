@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import net.softsociety.mra.dao.MedicineDAO;
 import net.softsociety.mra.vo.Medicine;
+import net.softsociety.mra.vo.ShowSign;
 
 @Service
 public class MedicineServiceImpl implements MedicineService {
@@ -41,6 +42,18 @@ public class MedicineServiceImpl implements MedicineService {
 	@Override
 	public boolean deleteMedicine(int seq) {
 		boolean result = dao.deleteMedicine(seq);
+		return result;
+	}
+
+	@Override
+	public List<Medicine> selectAll(Medicine medicine) {
+		List<Medicine> result = dao.selectAll2(medicine);
+		return result;
+	}
+
+	@Override
+	public List<Medicine> selectAll(ShowSign showsign) {
+		List<Medicine> result = dao.selectAll3(showsign);
 		return result;
 	}
 

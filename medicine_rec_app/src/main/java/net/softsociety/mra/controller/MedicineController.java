@@ -11,24 +11,44 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.MedicineService;
-
 import net.softsociety.mra.vo.Medicine;
+import net.softsociety.mra.vo.ShowSign;
 
 @Slf4j
 @Controller
-@RequestMapping("medicine")
+@RequestMapping("med")
 public class MedicineController {
 
 	@Autowired
 	MedicineService service;
 	
 	@GetMapping()
+	@ResponseBody()
 	public List<Medicine> selectAll(){
 		
 		List<Medicine> result = service.selectAll();
+		
+		return result;
+	}
+	
+	@GetMapping("/condition")
+	@ResponseBody()
+	public List<Medicine> selectAllByCondition(Medicine medicine){
+		
+		List<Medicine> result = service.selectAll(medicine);
+		
+		return result;
+	}
+	
+	@GetMapping("/symptom")
+	@ResponseBody()
+	public List<Medicine> selectAllByCondition(ShowSign showsign){
+		
+		List<Medicine> result = service.selectAll(showsign);
 		
 		return result;
 	}

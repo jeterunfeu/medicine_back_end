@@ -45,8 +45,8 @@ public class ShowSignServiceImpl implements ShowSignService {
 	}
 
 	@Override
-	public List<ShowSign> selectAllByGroup() {
-		List<ShowSign> list = dao.selectAllByGroup();
+	public List<ShowSign> selectAllByGroup(String part) {
+		List<ShowSign> list = dao.selectAllByGroup(part);
 		return list;
 	}
 	

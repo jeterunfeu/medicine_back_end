@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.SurveyService;
@@ -33,6 +34,7 @@ public class SurveyController {
 	}
 
 	@GetMapping("/{seq}")
+	@ResponseBody
 	public Survey selectOne(@PathVariable("seq") int seq) {
 		
 		Survey result = service.selectOne(seq);

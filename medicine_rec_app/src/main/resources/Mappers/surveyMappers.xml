@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="Survey">
-		select * from show_sign where surveynum = #{surveynum}
+		select * from survey where surveynum = #{surveynum}
 	</select>
 	
 	<insert id="insertSurvey" parameterType="Survey">

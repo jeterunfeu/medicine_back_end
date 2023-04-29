@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import net.softsociety.mra.vo.Medicine;
+import net.softsociety.mra.vo.ShowSign;
 
 public interface MedicineService {
 
@@ -16,6 +17,10 @@ public interface MedicineService {
 	boolean updateMedicine(Medicine medicine);
 
 	boolean deleteMedicine(int seq);
+
+	List<Medicine> selectAll(Medicine medicine);
+
+	List<Medicine> selectAll(ShowSign showsign);
 
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,9 +37,9 @@ public class ShowSignController {
 	
 	@GetMapping("/group")
 	@ResponseBody
-	public List<ShowSign> selectAllByGroup(){
+	public List<ShowSign> selectAllByGroup(String part){
 		
-		List<ShowSign> result = service.selectAllByGroup();
+		List<ShowSign> result = service.selectAllByGroup(part);
 		
 		return result;
 	}
