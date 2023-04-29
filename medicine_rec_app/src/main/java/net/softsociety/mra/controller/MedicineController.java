@@ -19,7 +19,7 @@ import net.softsociety.mra.vo.Medicine;
 
 @Slf4j
 @Controller
-@RequestMapping("medicne")
+@RequestMapping("medicine")
 public class MedicineController {
 
 	@Autowired

@@ -43,6 +43,12 @@ public class ShowSignServiceImpl implements ShowSignService {
 		boolean result = dao.deleteShowSign(seq);
 		return result;
 	}
+
+	@Override
+	public List<ShowSign> selectAllByGroup() {
+		List<ShowSign> list = dao.selectAllByGroup();
+		return list;
+	}
 	
 	
 }

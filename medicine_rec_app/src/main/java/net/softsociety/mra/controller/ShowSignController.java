@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.ShowSignService;
-import net.softsociety.mra.vo.Medicine;
 import net.softsociety.mra.vo.ShowSign;
 
 
@@ -30,6 +30,15 @@ public class ShowSignController {
 	public List<ShowSign> selectAll(){
 		
 		List<ShowSign> result = service.selectAll();
+		
+		return result;
+	}
+	
+	@GetMapping("/group")
+	@ResponseBody
+	public List<ShowSign> selectAllByGroup(){
+		
+		List<ShowSign> result = service.selectAllByGroup();
 		
 		return result;
 	}
