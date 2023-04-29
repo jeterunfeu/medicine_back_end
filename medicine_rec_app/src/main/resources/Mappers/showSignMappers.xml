@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="net.softsociety.mra.dao.ShowSignDAO">
+
+	<select id="selectAll" resultType="ShowSign">
+		select * from show_sign order by signnum desc
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="ShowSign">
+		select * from show_sign where signnum = #{signnum}
+	</select>
+	
+	<insert id="insertShowSign" parameterType="ShowSign">
+		insert into show_sign
+			signnum
+			, signpart
+			, signfirst
+			, signsecond
+			, mednum
+		values (
+			show_sign_seq.nextval
+			, signpart
+			, signfirst
+			, signsecond
+			, mednum
+		)
+	</insert>
+	
+	<update id="updateShowSign" parameterType="int">
+		update show_sign set
+			signpart = #{signpart}
+			, signfirst = #{signfirst}
+			, signsecond = #{signsecond}
+			, mednum = #{mednum}
+		where
+			signnum = #{signnum} 
+	</update>
+	
+	<delete id="deleteShowSign" parameterType="int">
+		delete 
+			from show_sign
+		where
+			signnum = #{signnum}
+	</delete>
+
+</mapper>

@@ -13,49 +13,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
-import net.softsociety.mra.service.MedicineService;
-
+import net.softsociety.mra.service.ShowSignService;
 import net.softsociety.mra.vo.Medicine;
+import net.softsociety.mra.vo.ShowSign;
+
 
 @Slf4j
 @Controller
-@RequestMapping("medicne")
-public class MedicineController {
+@RequestMapping("showsign")
+public class ShowSignController {
 
 	@Autowired
-	MedicineService service;
+	ShowSignService  service;
 	
 	@GetMapping()
-	public List<Medicine> selectAll(){
+	public List<ShowSign> selectAll(){
 		
-		List<Medicine> result = service.selectAll();
+		List<ShowSign> result = service.selectAll();
 		
 		return result;
 	}
 
 	@GetMapping("/{seq}")
-	public Medicine selectOne(@PathVariable("seq") int seq) {
+	public ShowSign selectOne(@PathVariable("seq") int seq) {
 		
-		Medicine result = service.selectOne(seq);
+		ShowSign result = service.selectOne(seq);
 		
 		return result;
 		
 	}
 
 	@PostMapping()
-	public boolean insert(@RequestBody Medicine medicine) {
+	public boolean insert(@RequestBody ShowSign showsign) {
 		
-		boolean result = service.insertMedicine(medicine);
+		boolean result = service.insertShowSign(showsign);
 		
 		return result;
 	}
 	
 	@PutMapping("/{seq}")
-	public boolean update(@PathVariable("seq") int seq, @RequestBody Medicine medicine) {
+	public boolean update(@PathVariable("seq") int seq, @RequestBody ShowSign showsign) {
 		
-		medicine.setMednum(seq);
+		showsign.setMednum(seq);
 		
-		boolean result = service.updateMedicine(medicine);
+		boolean result = service.updateShowSign(showsign);
 		
 		return result;
 	}
@@ -63,7 +64,7 @@ public class MedicineController {
 	@DeleteMapping("/{seq}")
 	public boolean delete(@PathVariable("seq") int seq) {
 		
-		boolean result = service.deleteMedicine(seq);
+		boolean result = service.deleteShowSign(seq);
 		
 		return result;
 	}
