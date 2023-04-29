@@ -12,12 +12,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member implements UserDetails {
+public class MediMember implements UserDetails {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -381255349641755611L;
 	
+	private int membernum;
 	private String memberid;
 	private String memberpw;
 	private String membername;

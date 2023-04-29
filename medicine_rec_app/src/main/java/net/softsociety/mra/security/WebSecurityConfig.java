@@ -60,12 +60,12 @@ public class WebSecurityConfig {
         // 인증 (로그인)
         .usersByUsernameQuery(
         		"select memberid username, memberpw password, enabled " +
-                "from spring5_member " +
+                "from medi_member " +
                 "where memberid = ?")
         // 권한
         .authoritiesByUsernameQuery(
         		"select memberid username, rolename role_name " +
-                "from spring5_member " +
+                "from medi_member " +
                 "where memberid = ?");
     }
 
