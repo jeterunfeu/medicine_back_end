@@ -44,6 +44,7 @@ public class SurveyController {
 	}
 
 	@PostMapping()
+	@ResponseBody()
 	public boolean insert(@RequestBody Survey survey) {
 		
 		boolean result = service.insertSurvey(survey);
@@ -52,6 +53,7 @@ public class SurveyController {
 	}
 	
 	@PutMapping("/{seq}")
+	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody Survey survey) {
 		
 		survey.setSurveynum(seq);
@@ -62,6 +64,7 @@ public class SurveyController {
 	}
 	
 	@DeleteMapping("/{seq}")
+	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deleteSurvey(seq);

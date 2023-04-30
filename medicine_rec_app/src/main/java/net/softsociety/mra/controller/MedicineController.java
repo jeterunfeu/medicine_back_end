@@ -63,6 +63,7 @@ public class MedicineController {
 	}
 
 	@PostMapping()
+	@ResponseBody()
 	public boolean insert(@RequestBody Medicine medicine) {
 		
 		boolean result = service.insertMedicine(medicine);
@@ -71,6 +72,7 @@ public class MedicineController {
 	}
 	
 	@PutMapping("/{seq}")
+	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody Medicine medicine) {
 		
 		medicine.setMednum(seq);
@@ -81,6 +83,7 @@ public class MedicineController {
 	}
 	
 	@DeleteMapping("/{seq}")
+	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deleteMedicine(seq);

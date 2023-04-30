@@ -28,6 +28,7 @@ public class ShowSignController {
 	ShowSignService  service;
 	
 	@GetMapping()
+	@ResponseBody()
 	public List<ShowSign> selectAll(){
 		
 		List<ShowSign> result = service.selectAll();
@@ -45,6 +46,7 @@ public class ShowSignController {
 	}
 
 	@GetMapping("/{seq}")
+	@ResponseBody()
 	public ShowSign selectOne(@PathVariable("seq") int seq) {
 		
 		ShowSign result = service.selectOne(seq);
@@ -54,6 +56,7 @@ public class ShowSignController {
 	}
 
 	@PostMapping()
+	@ResponseBody()
 	public boolean insert(@RequestBody ShowSign showsign) {
 		
 		boolean result = service.insertShowSign(showsign);
@@ -62,6 +65,7 @@ public class ShowSignController {
 	}
 	
 	@PutMapping("/{seq}")
+	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody ShowSign showsign) {
 		
 		showsign.setSignnum(seq);
@@ -72,6 +76,7 @@ public class ShowSignController {
 	}
 	
 	@DeleteMapping("/{seq}")
+	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deleteShowSign(seq);
