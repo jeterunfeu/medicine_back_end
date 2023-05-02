@@ -10,10 +10,19 @@
 		by signnum desc
 	</select>
 
-	<select id="selectAllByGroup" resultType="ShowSign" parameterType="String">
-		select signpart, signfirst, signsecond from show_sign group by signpart, signfirst, signsecond
-		<if test = "part != 'null'">
-			having signpart = #{part}
+	<select id="selectAllByGroup" resultType="ShowSign"
+		parameterType="ShowSign">
+		select signpart, signfirst, signsecond from show_sign group by
+		signpart, signfirst, signsecond
+			having 1 = 1
+		<if test="signpart != 'null'">
+			or signpart = #{signpart}
+		</if>
+		<if test="signfirst != 'null'">
+			or signfirst = #{signfirst}
+		</if>
+		<if test="signsecond != 'null'">
+			or signsecond = #{signsecond}
 		</if>
 	</select>
 
@@ -42,7 +51,8 @@
 		update show_sign set
 		signpart = #{signpart}
 		, signfirst = #{signfirst}
-		, signsecond = #{signsecond}
+		, signsecond =
+		#{signsecond}
 		, mednum = #{mednum}
 		where
 		signnum = #{signnum}
