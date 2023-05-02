@@ -29,6 +29,26 @@
 		</where>
 		order by mednum desc
 	</select>
+		<select id="countAll2" parameterType ="Medicine" resultType="int">
+		select count(*) from medicine 
+		<where>
+			<if test = "medname != null">
+				medname like '%'||#{medname}||'%'
+			</if>
+			<if test = "medco != null">
+				medco like '%'||#{medco}||'%'
+			</if>
+			<if test = "takemed != null">
+				takemed like '%'||#{takemed}||'%'
+			</if>
+			<if test = "medcycle != 0">
+				medcycle like '%'||#{medcycle}||'%'
+			</if>
+			<if test = "ingredient != null">
+				ingredient like '%'||#{ingredient}||'%'
+			</if>
+		</where>
+	</select>
 	<select id="selectAll3" parameterType="ShowSign" resultType="Medicine">
 		select * from medicine 
 			<where>
@@ -45,7 +65,21 @@
 			</where>
 		order by mednum desc
 	</select>
-	
+		<select id="countAll3" parameterType="ShowSign" resultType="int">
+		select count(*) from medicine 
+			<where>
+				<if test = "signnum != 0">
+					mednum in (select mednum from show_sign where
+						signpart=(select signpart from show_sign where signnum=#{signnum}) and 
+						signfirst=(select signfirst from show_sign where signnum=#{signnum}) and 
+						signsecond=(select signsecond from show_sign where signnum=#{signnum})
+					)
+				</if>
+				<if test = "signpart != null">
+					mednum in (select mednum from show_sign where signpart=#{signpart} and signfirst=#{signfirst} and signsecond=#{signsecond})
+				</if>
+			</where>
+	</select>
 	<select id="selectOne" parameterType="int" resultType="Medicine">
 		select * from medicine where mednum = #{mednum}
 	</select>

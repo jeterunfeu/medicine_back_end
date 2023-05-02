@@ -3,6 +3,7 @@ package net.softsociety.mra.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.MedicineService;
+import net.softsociety.mra.util.PageNavigator;
 import net.softsociety.mra.vo.Medicine;
 import net.softsociety.mra.vo.ShowSign;
 
@@ -26,10 +29,16 @@ public class MedicineController {
 	@Autowired
 	MedicineService service;
 	
+	@Value("${user.board.page}")
+	int countPerPage;
+	
+	@Value("${user.board.group}")
+	int pagePerGroup;
+	
 	@GetMapping()
 	@ResponseBody()
 	public List<Medicine> selectAll(){
-		
+
 		List<Medicine> result = service.selectAll();
 		
 		return result;
@@ -37,19 +46,19 @@ public class MedicineController {
 	
 	@GetMapping("/condition")
 	@ResponseBody()
-	public List<Medicine> selectAllByCondition(Medicine medicine){
-		
-		List<Medicine> result = service.selectAll(medicine);
-		
+	public PageNavigator selectAllByCondition(@RequestParam(name="page", defaultValue="1") int page, Medicine medicine){
+		PageNavigator result = service.getPageNavigator(pagePerGroup, countPerPage, page, medicine);
+		List<Medicine> data = service.selectAll(result, medicine);
+		result.setData(data);
 		return result;
 	}
 	
 	@GetMapping("/symptom")
 	@ResponseBody()
-	public List<Medicine> selectAllByCondition(ShowSign showsign){
-		
-		List<Medicine> result = service.selectAll(showsign);
-		
+	public PageNavigator selectAllByCondition(@RequestParam(name="page", defaultValue="1") int page, ShowSign showsign){
+		PageNavigator result = service.getPageNavigator(pagePerGroup, countPerPage, page, showsign);
+		List<Medicine> data = service.selectAll(result, showsign);
+		result.setData(data);
 		return result;
 	}
 

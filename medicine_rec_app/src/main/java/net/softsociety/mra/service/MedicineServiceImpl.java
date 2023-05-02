@@ -2,10 +2,12 @@ package net.softsociety.mra.service;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.softsociety.mra.dao.MedicineDAO;
+import net.softsociety.mra.util.PageNavigator;
 import net.softsociety.mra.vo.Medicine;
 import net.softsociety.mra.vo.ShowSign;
 
@@ -46,14 +48,29 @@ public class MedicineServiceImpl implements MedicineService {
 	}
 
 	@Override
-	public List<Medicine> selectAll(Medicine medicine) {
-		List<Medicine> result = dao.selectAll2(medicine);
+	public List<Medicine> selectAll(PageNavigator page, Medicine medicine) {
+		RowBounds rb = new RowBounds(page.getStartRecord(), page.getCountPerPage());
+		List<Medicine> result = dao.selectAll2(medicine, rb);
 		return result;
 	}
 
 	@Override
-	public List<Medicine> selectAll(ShowSign showsign) {
+	public List<Medicine> selectAll(PageNavigator page, ShowSign showsign) {
 		List<Medicine> result = dao.selectAll3(showsign);
+		return result;
+	}
+
+	@Override
+	public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, Medicine medicine) {
+		int total = dao.countAll2(medicine);
+		PageNavigator result = new PageNavigator(pagePerGroup, countPerPage, page, total);
+		return result;
+	}
+
+	@Override
+	public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, ShowSign showsign) {
+		int total = dao.countAll3(showsign);
+		PageNavigator result = new PageNavigator(pagePerGroup, countPerPage, page, total);
 		return result;
 	}
 
