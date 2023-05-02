@@ -39,7 +39,6 @@ public class ShowSignController {
 	@GetMapping("/group")
 	@ResponseBody
 	public List<ShowSign> selectAllByGroup(ShowSign showSign){
-		
 		List<ShowSign> result = service.selectAllByGroup(showSign);
 		
 		return result;
