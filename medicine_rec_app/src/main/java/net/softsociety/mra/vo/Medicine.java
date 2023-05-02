@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Medicine {
 	int mednum;
+	String picture;
 	String medname;
 	String medco;
 	int price;
