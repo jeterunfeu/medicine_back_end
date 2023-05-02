@@ -15,6 +15,9 @@ public class MediMember {
 	String email;
 	String phone;
 	String address;
+	String history;
+	String allergy;
+	String medicine;
 	boolean enabled;
 	String rolename;
 }

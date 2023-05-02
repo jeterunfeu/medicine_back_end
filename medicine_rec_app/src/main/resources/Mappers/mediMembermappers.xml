@@ -29,6 +29,15 @@
 		<if test="address!=null">
 			, address
 		</if>
+		<if test="history!=null">
+			, history
+		</if>
+		<if test="allergy!=null">
+			, allergy
+		</if>
+		<if test="medicine!=null">
+			, medicine
+		</if>
 		)
 		values (
 		medi_member_seq.nextval
@@ -43,6 +52,15 @@
 		</if>
 		<if test="address!=null">
 			, #{address}
+		</if>
+		<if test="history!=null">
+			, #{history}
+		</if>
+		<if test="allergy!=null">
+			, #{allergy}
+		</if>
+		<if test="medicine!=null">
+			, #{medicine}
 		</if>
 		)
 	</insert>

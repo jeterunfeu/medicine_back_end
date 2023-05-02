@@ -15,5 +15,6 @@ public class Medicine {
 	String takemed;
 	int medcycle;
 	String ingredient;
+	float star;
 	String note;
 }

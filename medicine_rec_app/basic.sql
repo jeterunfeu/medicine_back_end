@@ -12,6 +12,9 @@ create table medi_member (
    email            varchar2(50),                        --이메일 주소
    phone            varchar2(50),                        --전화번호
    address            varchar2(200),                        --집 주소
+   history          varchar2(500),
+   allergy          varchar2(500),
+   medicine         varchar2(500),
    enabled            number(1)            default 1 not null,
                   constraint enabled_check check(enabled in (0, 1)),            
                      --계정상태. 숫자 1자리. 1은 사용가능(기본값), 0은 사용불가능 아이디. 데이터무결성(check로 0,1만)
@@ -29,6 +32,7 @@ create table medicine (
     takemed             varchar2(2000),               
     medcycle            number                  default 3 not null,
     ingredient          varchar2(2000),
+    picture             varchar2(100),
     note                varchar2(2000)                default null
 );
 
@@ -65,12 +69,12 @@ create table review (
     inputdate           date                    default sysdate
 );
 
-insert into medi_member(membernum, memberid, memberpw,membername, email, phone, address) values(medi_member_seq.nextval, 'aaa', '{bcrypt}$2a$10$fVWK.WZHd7jtio7rp..IWeAPex8Hus3VqFTcNtbghoa3X6wi4x7y2', 'test','test@gmail.com','010-1111-2222','광주무역회관');
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient,note) values(medicine_seq.nextval, '타이레놀','한국존슨앤드존슨',3000,'경구투여',3,'아세트아미노펜',null);
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient,note) values(medicine_seq.nextval, '타세놀','부광약품',3000,'경구투여',4,'아세트아미노펜','12세이상');
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient,note) values(medicine_seq.nextval, '펜콜아정','명문제약',3000,'경구투여',4,'아세트아미노펜','12세이상');
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient,note) values(medicine_seq.nextval, '판피린큐','동아제약',3000,'경구투여',4,'아세트아미노펜','12세이상');
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient,note) values(medicine_seq.nextval, '판콜에스','동화약품',3000,'경구투여',4,'아세트아미노펜','12세이상');
+insert into medi_member(membernum, memberid, memberpw,membername, email, phone, address, history, allergy, medicine) values(medi_member_seq.nextval, 'aaa', '{bcrypt}$2a$10$fVWK.WZHd7jtio7rp..IWeAPex8Hus3VqFTcNtbghoa3X6wi4x7y2', 'test','test@gmail.com','010-1111-2222','광주무역회관', '부정맥', '스테로이드계약물', '베타차단제');
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '타이레놀','한국존슨앤드존슨',3000,'경구투여',3,'아세트아미노펜','tylenol.jpg',null);
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '타세놀','부광약품',3000,'경구투여',4,'아세트아미노펜','tacenol.jpg','12세이상');
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '펜콜아정','명문제약',3000,'경구투여',4,'아세트아미노펜','pencol.jpg','12세이상');
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '판피린큐','동아제약',3000,'경구투여',4,'아세트아미노펜','panpirin.jpg','12세이상');
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '판콜에스','동화약품',3000,'경구투여',4,'아세트아미노펜','pancols.jpg','12세이상');
 insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '머리','두통','두통',1);
 insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '머리','두통','두통',2);
 insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '머리','두통','두통',3);

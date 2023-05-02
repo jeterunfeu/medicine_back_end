@@ -9,7 +9,8 @@
 		select * from medicine order by mednum desc
 	</select>
 	<select id="selectAll2" parameterType ="Medicine" resultType="Medicine">
-		select * from medicine 
+		select mednum, medname, medco, price, takemed, medcycle, ingredient, note, picture, (select decode(avg(evaluate), null, 2.5, avg(evaluate)) from review where mednum = m.mednum) 
+		as star from medicine m 
 		<where>
 			<if test = "medname != null">
 				medname like '%'||#{medname}||'%'
