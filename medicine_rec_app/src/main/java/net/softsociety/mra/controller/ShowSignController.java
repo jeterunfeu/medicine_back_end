@@ -3,6 +3,7 @@ package net.softsociety.mra.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.ShowSignService;
+import net.softsociety.mra.util.PageNavigator;
+import net.softsociety.mra.vo.Medicine;
 import net.softsociety.mra.vo.ShowSign;
 
 
@@ -26,6 +29,12 @@ public class ShowSignController {
 
 	@Autowired
 	ShowSignService  service;
+	
+	@Value("${user.board.page}")
+	int countPerPage;
+	
+	@Value("${user.board.group}")
+	int pagePerGroup;
 	
 	@GetMapping()
 	@ResponseBody()
@@ -38,9 +47,10 @@ public class ShowSignController {
 	
 	@GetMapping("/group")
 	@ResponseBody
-	public List<ShowSign> selectAllByGroup(ShowSign showSign){
-		List<ShowSign> result = service.selectAllByGroup(showSign);
-		
+	public PageNavigator selectAllByGroup(@RequestParam(name="page", defaultValue="1") int page, ShowSign showSign){
+		PageNavigator result = service.getPageNavigator(pagePerGroup, countPerPage, page, showSign);
+		List<ShowSign> data = service.selectAllByGroup(result, showSign);
+		result.setData(data);
 		return result;
 	}
 

@@ -25,6 +25,24 @@
 			and signsecond like '%'||#{signsecond}||'%'
 		</if>
 	</select>
+	
+		<select id="countAllByGroup" resultType="int"
+		parameterType="ShowSign">
+		select count(*) from (
+		select signpart, signfirst, signsecond from show_sign group by
+		signpart, signfirst, signsecond
+			having 1 = 1
+		<if test="signpart != null">
+			and signpart like '%'||#{signpart}||'%'
+		</if>
+		<if test="signfirst != null">
+			and signfirst like '%'||#{signfirst}||'%'
+		</if>
+		<if test="signsecond != null">
+			and signsecond like '%'||#{signsecond}||'%'
+		</if>
+		)
+	</select>
 
 	<select id="selectOne" parameterType="int" resultType="ShowSign">
 		select *

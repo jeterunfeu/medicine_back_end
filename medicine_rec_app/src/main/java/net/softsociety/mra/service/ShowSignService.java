@@ -2,6 +2,7 @@ package net.softsociety.mra.service;
 
 import java.util.List;
 
+import net.softsociety.mra.util.PageNavigator;
 import net.softsociety.mra.vo.ShowSign;
 
 public interface ShowSignService {
@@ -16,6 +17,8 @@ public interface ShowSignService {
 
 	boolean deleteShowSign(int seq);
 
-	List<ShowSign> selectAllByGroup(ShowSign showsign);
+	List<ShowSign> selectAllByGroup(PageNavigator result, ShowSign showsign);
+
+	PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, ShowSign showSign);
 
 }
