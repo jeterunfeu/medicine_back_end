@@ -3,7 +3,7 @@ package net.softsociety.mra.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.PersonalHistoryService;
+import net.softsociety.mra.util.PageNavigator;
+import net.softsociety.mra.vo.History;
 import net.softsociety.mra.vo.PersonalHistory;
-import net.softsociety.mra.vo.Survey;
 
 @Slf4j
 @RestController
@@ -27,11 +28,17 @@ public class PersonalHistoryController {
 	@Autowired
 	PersonalHistoryService service;
 	
+	@Value("${user.board.page}")
+	int countPerPage;
+	
+	@Value("${user.board.group}")
+	int pagePerGroup;
+	
 	@GetMapping()
-	public List<PersonalHistory> selectAll(){
-		
-		List<PersonalHistory> result = service.selectAll();
-		
+	public PageNavigator selectAll(@RequestParam(name="page", defaultValue="1") int page, History history){
+		PageNavigator result = service.getPageNavigator(pagePerGroup, countPerPage, page, history);
+		List<History> data = service.selectAll(result, history);
+		result.setData(data);
 		return result;
 	}
 
