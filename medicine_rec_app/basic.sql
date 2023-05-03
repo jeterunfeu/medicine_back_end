@@ -55,7 +55,6 @@ create table survey (
 create table presonal_history (
     historynum          number                  primary key,
     membernum           number                  references medi_member(membernum),
-    signnum             number                  references show_sign(signnum),
     mednum              number                  references medicine(mednum),
     inputdate           date                    default sysdate
 );

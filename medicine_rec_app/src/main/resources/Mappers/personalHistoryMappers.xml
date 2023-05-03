@@ -18,13 +18,11 @@
 		insert into personal_history
 			historynum
 			, membernum
-			, signnum
 			, mednum
 		values (
 			personal_history_seq.nextval
-			, membernum
-			, signnum
-			, mednum
+			, #{membernum}
+			, #{mednum}
 		)
 	</insert>
 	
@@ -32,7 +30,6 @@
 	<update id="updatePersonalHistory" parameterType="int">
 		update personal_history set
 			membernum = #{membernum}
-			, signnum = #{signnum}
 			, mednum = #{mednum}
 		where
 			historynum = #{historynum} 

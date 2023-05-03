@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class PersonalHistory {
 	int historynum;
 	int membernum;
-	int signnum;
 	int mednum;
 	String inputdate;
 }
