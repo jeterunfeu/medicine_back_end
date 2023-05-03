@@ -60,24 +60,6 @@ public class MediMemberController {
 		return result != null ? false : true;
 		
 	}
-	
-	@GetMapping("/seq")
-	public int selectOneById(@AuthenticationPrincipal UserDetails user) {
-		
-		MediMember result = service.selectOneById(user.getUsername());
-		
-		return result.getMembernum();
-		
-	}
-	
-	@GetMapping("/info")
-	public MediMember selectOne(@AuthenticationPrincipal UserDetails user) {
-		
-		MediMember result = service.selectOneById(user.getUsername());
-		
-		return result;
-		
-	}
 
 	@PostMapping()
 	public boolean insert(@RequestBody MediMember member) {
