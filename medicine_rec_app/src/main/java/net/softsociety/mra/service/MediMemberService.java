@@ -18,4 +18,5 @@ public interface MediMemberService {
 
 	MediMember selectOneById(String username);
 
+
 }

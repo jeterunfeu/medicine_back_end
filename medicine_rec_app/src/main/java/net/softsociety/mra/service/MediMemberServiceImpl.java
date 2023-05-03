@@ -59,8 +59,6 @@ public class MediMemberServiceImpl implements MediMemberService {
 	public MediMember selectOneById(String username) {
 		MediMember result = dao.selectOneById(username);
 		return result;
-	}
-
-	
+	}	
 	
 }

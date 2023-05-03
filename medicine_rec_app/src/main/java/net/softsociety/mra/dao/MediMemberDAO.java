@@ -21,4 +21,6 @@ public interface MediMemberDAO {
 
 	MediMember selectOneById(String username);
 
+	boolean selectOneDuplicated(String id);
+
 }

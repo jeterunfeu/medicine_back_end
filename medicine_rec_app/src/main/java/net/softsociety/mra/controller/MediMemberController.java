@@ -45,6 +45,15 @@ public class MediMemberController {
 		
 	}
 	
+	@GetMapping("/idcheck/{id}")
+	public boolean selectOneDuplicted(@PathVariable("id") String id) {
+		
+		MediMember result = service.selectOneById(id);
+		
+		return result != null ? false : true;
+		
+	}
+	
 	@GetMapping("/seq")
 	public int selectOneById(@AuthenticationPrincipal UserDetails user) {
 		
