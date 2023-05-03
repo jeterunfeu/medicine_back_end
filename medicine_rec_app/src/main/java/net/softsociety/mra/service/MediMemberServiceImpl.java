@@ -55,6 +55,12 @@ public class MediMemberServiceImpl implements MediMemberService {
 		return result == 0 ? false : true;
 	}
 
+	@Override
+	public MediMember selectOneById(String username) {
+		MediMember result = dao.selectOneById(username);
+		return result;
+	}
+
 	
 	
 }

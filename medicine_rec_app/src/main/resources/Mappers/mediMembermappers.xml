@@ -14,6 +14,11 @@
 		select * from medi_member where membernum = #{membernum}
 	</select>
 
+	<select id="selectOneById" parameterType="MediMember"
+		resultType="String">
+		select * from medi_member where memberid = #{memberid}
+	</select>
+
 	<insert id="insertMember" parameterType="MediMember">
 		insert into medi_member(
 		membernum
@@ -43,7 +48,8 @@
 		medi_member_seq.nextval
 		, #{memberid}
 		, #{memberpw}
-		, #{membername}
+		,
+		#{membername}
 		<if test="email!=null">
 			, #{email}
 		</if>
@@ -70,7 +76,8 @@
 		mamberpw = #{memberpw}
 		, membername = #{membername}
 		, email = #{email}
-		, phone = #{phone}
+		,
+		phone = #{phone}
 		, address = #{address}
 		where
 		membernum = #{membernum}

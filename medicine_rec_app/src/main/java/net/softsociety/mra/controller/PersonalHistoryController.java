@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.PersonalHistoryService;
@@ -19,7 +20,7 @@ import net.softsociety.mra.vo.PersonalHistory;
 import net.softsociety.mra.vo.Survey;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("personalHistory")
 public class PersonalHistoryController {
 
@@ -27,7 +28,6 @@ public class PersonalHistoryController {
 	PersonalHistoryService service;
 	
 	@GetMapping()
-	@ResponseBody()
 	public List<PersonalHistory> selectAll(){
 		
 		List<PersonalHistory> result = service.selectAll();
@@ -36,7 +36,6 @@ public class PersonalHistoryController {
 	}
 
 	@GetMapping("/{seq}")
-	@ResponseBody()
 	public PersonalHistory selectOne(@PathVariable("seq") int seq) {
 		
 		PersonalHistory result = service.selectOne(seq);
@@ -46,7 +45,6 @@ public class PersonalHistoryController {
 	}
 
 	@PostMapping()
-	@ResponseBody()
 	public boolean insert(@RequestBody PersonalHistory personalhistory) {
 		
 		boolean result = service.insertPersonalHistroy(personalhistory);
@@ -55,7 +53,6 @@ public class PersonalHistoryController {
 	}
 	
 	@PutMapping("/{seq}")
-	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody PersonalHistory personalhistory) {
 		
 		personalhistory.setHistorynum(seq);
@@ -66,7 +63,6 @@ public class PersonalHistoryController {
 	}
 	
 	@DeleteMapping("/{seq}")
-	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deletePersonalHistory(seq);

@@ -3,6 +3,8 @@ package net.softsociety.mra.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +14,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.MediMemberService;
 import net.softsociety.mra.vo.MediMember;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("member")
 public class MediMemberController {
 
@@ -26,7 +29,6 @@ public class MediMemberController {
 	MediMemberService service;
 	
 	@GetMapping()
-	@ResponseBody()
 	public List<MediMember> selectAll(){
 		
 		List<MediMember> result = service.listMediMember();
@@ -35,7 +37,6 @@ public class MediMemberController {
 	}
 
 	@GetMapping("/{seq}")
-	@ResponseBody()
 	public MediMember selectOne(@PathVariable("seq") int seq) {
 		
 		MediMember result = service.SelectOne(seq);
@@ -43,9 +44,26 @@ public class MediMemberController {
 		return result;
 		
 	}
+	
+	@GetMapping("/seq")
+	public int selectOneById(@AuthenticationPrincipal UserDetails user) {
+		
+		MediMember result = service.selectOneById(user.getUsername());
+		
+		return result.getMembernum();
+		
+	}
+	
+	@GetMapping("/info")
+	public MediMember selectOne(@AuthenticationPrincipal UserDetails user) {
+		
+		MediMember result = service.selectOneById(user.getUsername());
+		
+		return result;
+		
+	}
 
 	@PostMapping()
-	@ResponseBody()
 	public boolean insert(@RequestBody MediMember member) {
 		
 		log.info("member : {} ", member);
@@ -56,7 +74,6 @@ public class MediMemberController {
 	}
 	
 	@PutMapping("/{seq}")
-	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody MediMember member) {
 		
 		member.setMembernum(seq);
@@ -67,7 +84,6 @@ public class MediMemberController {
 	}
 	
 	@DeleteMapping("/{seq}")
-	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deleteMember(seq);

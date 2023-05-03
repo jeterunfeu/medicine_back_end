@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.MedicineService;
@@ -22,7 +23,7 @@ import net.softsociety.mra.vo.Medicine;
 import net.softsociety.mra.vo.ShowSign;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("med")
 public class MedicineController {
 
@@ -45,7 +46,6 @@ public class MedicineController {
 	}
 	
 	@GetMapping("/condition")
-	@ResponseBody()
 	public PageNavigator selectAllByCondition(@RequestParam(name="page", defaultValue="1") int page, Medicine medicine){
 		PageNavigator result = service.getPageNavigator(pagePerGroup, countPerPage, page, medicine);
 		List<Medicine> data = service.selectAll(result, medicine);
@@ -54,7 +54,6 @@ public class MedicineController {
 	}
 	
 	@GetMapping("/symptom")
-	@ResponseBody()
 	public PageNavigator selectAllByCondition(@RequestParam(name="page", defaultValue="1") int page, ShowSign showsign){
 		PageNavigator result = service.getPageNavigator(pagePerGroup, countPerPage, page, showsign);
 		List<Medicine> data = service.selectAll(result, showsign);
@@ -72,7 +71,6 @@ public class MedicineController {
 	}
 
 	@PostMapping()
-	@ResponseBody()
 	public boolean insert(@RequestBody Medicine medicine) {
 		
 		boolean result = service.insertMedicine(medicine);
@@ -81,7 +79,6 @@ public class MedicineController {
 	}
 	
 	@PutMapping("/{seq}")
-	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody Medicine medicine) {
 		
 		medicine.setMednum(seq);
@@ -92,7 +89,6 @@ public class MedicineController {
 	}
 	
 	@DeleteMapping("/{seq}")
-	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deleteMedicine(seq);

@@ -18,4 +18,7 @@ public class Medicine {
 	String ingredient;
 	float star;
 	String note;
+	String signpart;
+	String signfirst;
+	String signsecond;
 }

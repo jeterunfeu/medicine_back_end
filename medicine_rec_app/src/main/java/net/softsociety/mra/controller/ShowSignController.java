@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.ShowSignService;
@@ -23,7 +24,7 @@ import net.softsociety.mra.vo.ShowSign;
 
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("showsign")
 public class ShowSignController {
 
@@ -37,7 +38,6 @@ public class ShowSignController {
 	int pagePerGroup;
 	
 	@GetMapping()
-	@ResponseBody()
 	public List<ShowSign> selectAll(){
 		
 		List<ShowSign> result = service.selectAll();
@@ -46,7 +46,6 @@ public class ShowSignController {
 	}
 	
 	@GetMapping("/group")
-	@ResponseBody
 	public PageNavigator selectAllByGroup(@RequestParam(name="page", defaultValue="1") int page, ShowSign showSign){
 		PageNavigator result = service.getPageNavigator(pagePerGroup, countPerPage, page, showSign);
 		List<ShowSign> data = service.selectAllByGroup(result, showSign);
@@ -55,7 +54,6 @@ public class ShowSignController {
 	}
 
 	@GetMapping("/{seq}")
-	@ResponseBody()
 	public ShowSign selectOne(@PathVariable("seq") int seq) {
 		
 		ShowSign result = service.selectOne(seq);
@@ -65,7 +63,6 @@ public class ShowSignController {
 	}
 
 	@PostMapping()
-	@ResponseBody()
 	public boolean insert(@RequestBody ShowSign showsign) {
 		
 		boolean result = service.insertShowSign(showsign);
@@ -74,7 +71,6 @@ public class ShowSignController {
 	}
 	
 	@PutMapping("/{seq}")
-	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody ShowSign showsign) {
 		
 		showsign.setSignnum(seq);
@@ -85,7 +81,6 @@ public class ShowSignController {
 	}
 	
 	@DeleteMapping("/{seq}")
-	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deleteShowSign(seq);

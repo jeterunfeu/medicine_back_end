@@ -19,4 +19,6 @@ public interface MediMemberDAO {
 
 	int delteMember(int seq);
 
+	MediMember selectOneById(String username);
+
 }

@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.SurveyService;
 import net.softsociety.mra.vo.Survey;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("survey")
 public class SurveyController {
 
@@ -34,7 +35,6 @@ public class SurveyController {
 	}
 
 	@GetMapping("/{seq}")
-	@ResponseBody
 	public Survey selectOne(@PathVariable("seq") int seq) {
 		
 		Survey result = service.selectOne(seq);
@@ -44,7 +44,6 @@ public class SurveyController {
 	}
 
 	@PostMapping()
-	@ResponseBody()
 	public boolean insert(@RequestBody Survey survey) {
 		
 		boolean result = service.insertSurvey(survey);
@@ -53,7 +52,6 @@ public class SurveyController {
 	}
 	
 	@PutMapping("/{seq}")
-	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody Survey survey) {
 		
 		survey.setSurveynum(seq);
@@ -64,7 +62,6 @@ public class SurveyController {
 	}
 	
 	@DeleteMapping("/{seq}")
-	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deleteSurvey(seq);

@@ -16,4 +16,6 @@ public interface MediMemberService {
 
 	boolean deleteMember(int seq);
 
+	MediMember selectOneById(String username);
+
 }

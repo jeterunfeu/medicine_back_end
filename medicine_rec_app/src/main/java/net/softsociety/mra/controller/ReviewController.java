@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.ReviewService;
 import net.softsociety.mra.vo.Review;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("review")
 public class ReviewController {
 
@@ -26,7 +27,6 @@ public class ReviewController {
 	ReviewService service;
 	
 	@GetMapping()
-	@ResponseBody()
 	public List<Review> selectAll(){
 		
 		List<Review> result = service.selectAll();
@@ -35,7 +35,6 @@ public class ReviewController {
 	}
 
 	@GetMapping("/{seq}")
-	@ResponseBody()
 	public Review selectOne(@PathVariable("seq") int seq) {
 		
 		Review result = service.selectOne(seq);
@@ -45,7 +44,6 @@ public class ReviewController {
 	}
 
 	@PostMapping()
-	@ResponseBody()
 	public boolean insert(@RequestBody Review review) {
 		
 		boolean result = service.insertReview(review);
@@ -54,7 +52,6 @@ public class ReviewController {
 	}
 	
 	@PutMapping("/{seq}")
-	@ResponseBody()
 	public boolean update(@PathVariable("seq") int seq, @RequestBody Review review) {
 		
 		review.setReviewnum(seq);
@@ -65,7 +62,6 @@ public class ReviewController {
 	}
 	
 	@DeleteMapping("/{seq}")
-	@ResponseBody()
 	public boolean delete(@PathVariable("seq") int seq) {
 		
 		boolean result = service.deleteReview(seq);
