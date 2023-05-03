@@ -15,10 +15,10 @@
 	
 	<!--  personal_history에 인서트할 정보가 없음 -->
 	<insert id="insertPersonalHistory" parameterType="PersonalHistory">
-		insert into personal_history
+		insert into personal_history(
 			historynum
 			, membernum
-			, mednum
+			, mednum)
 		values (
 			personal_history_seq.nextval
 			, #{membernum}

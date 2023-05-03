@@ -52,7 +52,7 @@ create table survey (
     signnum             number
 );
 
-create table presonal_history (
+create table personal_history (
     historynum          number                  primary key,
     membernum           number                  references medi_member(membernum),
     mednum              number                  references medicine(mednum),
