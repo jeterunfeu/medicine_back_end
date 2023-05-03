@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.PersonalHistoryService;
 import net.softsociety.mra.util.PageNavigator;
 import net.softsociety.mra.vo.History;
+import net.softsociety.mra.vo.MediMember;
 import net.softsociety.mra.vo.PersonalHistory;
 
 @Slf4j
@@ -35,7 +38,12 @@ public class PersonalHistoryController {
 	int pagePerGroup;
 	
 	@GetMapping()
-	public PageNavigator selectAll(@RequestParam(name="page", defaultValue="1") int page, History history){
+	public PageNavigator selectAll(@AuthenticationPrincipal UserDetails user, @RequestParam(name="page", defaultValue="1") int page, History history){
+		MediMember person = service.selectOneById(user.getUsername());
+		if(history.getMembernum() != person.getMembernum()) {
+			return null;
+		}
+		history.setMembernum(person.getMembernum());
 		PageNavigator result = service.getPageNavigator(pagePerGroup, countPerPage, page, history);
 		List<History> data = service.selectAll(result, history);
 		result.setData(data);

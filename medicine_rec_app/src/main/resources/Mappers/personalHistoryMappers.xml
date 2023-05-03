@@ -68,6 +68,12 @@
 		select * from personal_history where historynum =
 		#{historynum}
 	</select>
+	
+		<select id="selectOneById" parameterType="String"
+		resultType="MediMember">
+		select * from medi_member where memberid =
+		#{memberid}
+	</select>
 
 	<!-- personal_history에 인서트할 정보가 없음 -->
 	<insert id="insertPersonalHistory"

@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.softsociety.mra.util.PageNavigator;
 import net.softsociety.mra.vo.History;
+import net.softsociety.mra.vo.MediMember;
 import net.softsociety.mra.vo.PersonalHistory;
 
 public interface PersonalHistoryService {
@@ -19,5 +20,7 @@ public interface PersonalHistoryService {
 	boolean deletePersonalHistory(int seq);
 
 	PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, History history);
+
+	MediMember selectOneById(String username);
 
 }

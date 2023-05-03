@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import net.softsociety.mra.dao.PersonalHistoryDAO;
 import net.softsociety.mra.util.PageNavigator;
 import net.softsociety.mra.vo.History;
+import net.softsociety.mra.vo.MediMember;
 import net.softsociety.mra.vo.PersonalHistory;
 
 @Service
@@ -52,6 +53,12 @@ public class PersonalHistoryServiceImpl implements PersonalHistoryService {
 	public PageNavigator getPageNavigator(int pagePerGroup, int countPerPage, int page, History history) {
 		int total = dao.countAll(history);
 		PageNavigator result = new PageNavigator(pagePerGroup, countPerPage, page, total);
+		return result;
+	}
+
+	@Override
+	public MediMember selectOneById(String username) {
+		MediMember result = dao.selectOneById(username);
 		return result;
 	}
 	

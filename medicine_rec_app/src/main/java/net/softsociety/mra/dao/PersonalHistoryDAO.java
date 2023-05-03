@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 import net.softsociety.mra.vo.History;
+import net.softsociety.mra.vo.MediMember;
 import net.softsociety.mra.vo.PersonalHistory;
 
 @Mapper
@@ -22,5 +23,7 @@ public interface PersonalHistoryDAO {
 	boolean deletePersonalHistory(int seq);
 
 	int countAll(History history);
+
+	MediMember selectOneById(String username);
 
 }
