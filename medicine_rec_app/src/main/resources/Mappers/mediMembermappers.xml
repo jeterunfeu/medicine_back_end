@@ -95,8 +95,8 @@
 	<update id="updateMemberLogin" parameterType="MediMember">
 		update medi_member set
 		membername = #{membername}
-		<if test="memberpw != null">
-			,mamberpw = #{memberpw}
+		<if test="memberpw != null and memberpw != ''">
+			,memberpw = #{memberpw}
 		</if>
 
 		, email = #{email}
