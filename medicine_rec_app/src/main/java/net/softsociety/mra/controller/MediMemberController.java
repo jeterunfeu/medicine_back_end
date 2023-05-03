@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.service.MediMemberService;
 import net.softsociety.mra.vo.MediMember;
+import net.softsociety.mra.vo.Member;
 
 @Slf4j
 @RestController
@@ -37,9 +36,9 @@ public class MediMemberController {
 	}
 	
 	@GetMapping("/info/id")
-	public MediMember selectOneByLogin(@AuthenticationPrincipal UserDetails user){
+	public Member selectOneByLogin(@AuthenticationPrincipal UserDetails user){
 		
-		MediMember result = service.selectOneById(user.getUsername());
+		Member result = service.selectOneByLogin(user.getUsername());
 		
 		return result;
 	}
@@ -96,6 +95,18 @@ public class MediMemberController {
 		member.setMembernum(seq);
 		
 		boolean result = service.updateMember(member);
+		
+		return result;
+	}
+	
+	@PutMapping("/info/id")
+	public boolean updateLogin(@AuthenticationPrincipal UserDetails user, @RequestBody MediMember member) {
+		String id = user.getUsername();
+		if(!id.equals(member.getMemberid())) {
+			return false;
+		}
+		
+		boolean result = service.updateMemberLogin(member);
 		
 		return result;
 	}

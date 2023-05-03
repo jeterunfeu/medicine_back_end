@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.mra.dao.MediMemberDAO;
 import net.softsociety.mra.vo.MediMember;
+import net.softsociety.mra.vo.Member;
 
 @Slf4j
 @Service
@@ -59,6 +60,18 @@ public class MediMemberServiceImpl implements MediMemberService {
 	public MediMember selectOneById(String username) {
 		MediMember result = dao.selectOneById(username);
 		return result;
+	}
+
+	@Override
+	public Member selectOneByLogin(String username) {
+		Member result = dao.selectOneByLogin(username);
+		return result;
+	}
+
+	@Override
+	public boolean updateMemberLogin(MediMember member) {
+		int result = dao.updateMemberLogin(member);
+		return result == 0 ? false : true;
 	}	
 	
 }

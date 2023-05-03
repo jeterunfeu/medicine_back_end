@@ -18,7 +18,10 @@
 		resultType="MediMember">
 		select * from medi_member where memberid = #{memberid}
 	</select>
-
+	<select id="selectOneByLogin" parameterType="String"
+		resultType="Member">
+		select * from medi_member where memberid = #{memberid}
+	</select>
 	<insert id="insertMember" parameterType="MediMember">
 		insert into medi_member(
 		membernum
@@ -71,16 +74,40 @@
 		)
 	</insert>
 
-	<update id="updateMember" parameterType="int">
+	<update id="updateMember" parameterType="MediMember">
 		update medi_member set
-		mamberpw = #{memberpw}
-		, membername = #{membername}
+		membername = #{membername}
+		<if test="memberpw != null">
+			,mamberpw = #{memberpw}
+		</if>
+
 		, email = #{email}
-		,
-		phone = #{phone}
+		, phone = #{phone}
 		, address = #{address}
+		, history =
+		#{history}
+		, allergy = #{allergy}
+		, medicine = #{medicine}
 		where
 		membernum = #{membernum}
+	</update>
+
+	<update id="updateMemberLogin" parameterType="MediMember">
+		update medi_member set
+		membername = #{membername}
+		<if test="memberpw != null">
+			,mamberpw = #{memberpw}
+		</if>
+
+		, email = #{email}
+		, phone = #{phone}
+		, address = #{address}
+		, history =
+		#{history}
+		, allergy = #{allergy}
+		, medicine = #{medicine}
+		where
+		memberid = #{memberid}
 	</update>
 
 	<delete id="deleteMember" parameterType="int">

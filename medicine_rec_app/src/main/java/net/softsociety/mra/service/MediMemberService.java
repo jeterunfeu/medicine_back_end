@@ -3,6 +3,7 @@ package net.softsociety.mra.service;
 import java.util.List;
 
 import net.softsociety.mra.vo.MediMember;
+import net.softsociety.mra.vo.Member;
 
 public interface MediMemberService {
 
@@ -17,6 +18,10 @@ public interface MediMemberService {
 	boolean deleteMember(int seq);
 
 	MediMember selectOneById(String username);
+
+	Member selectOneByLogin(String username);
+
+	boolean updateMemberLogin(MediMember member);
 
 
 }

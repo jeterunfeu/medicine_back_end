@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import net.softsociety.mra.vo.MediMember;
+import net.softsociety.mra.vo.Member;
 
 @Mapper
 public interface MediMemberDAO {
@@ -22,5 +23,9 @@ public interface MediMemberDAO {
 	MediMember selectOneById(String username);
 
 	boolean selectOneDuplicated(String id);
+
+	Member selectOneByLogin(String username);
+
+	int updateMemberLogin(MediMember member);
 
 }
