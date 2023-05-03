@@ -17,14 +17,14 @@ public class MediMemberServiceImpl implements MediMemberService {
 
 	@Autowired
 	MediMemberDAO dao;
-	
+
 	@Autowired
 	PasswordEncoder pwEncoder;
-	
+
 	@Override
 	public List<MediMember> listMediMember() {
 		List<MediMember> result = dao.selectAll();
-		
+
 		return result;
 	}
 
@@ -38,14 +38,17 @@ public class MediMemberServiceImpl implements MediMemberService {
 	public boolean insertMember(MediMember member) {
 		String encoderedPw = pwEncoder.encode(member.getMemberpw());
 		member.setMemberpw(encoderedPw);
-				
-			
+
 		int result = dao.insertMember(member);
 		return result == 0 ? false : true;
 	}
 
 	@Override
 	public boolean updateMember(MediMember member) {
+		if (member.getMemberpw() != null && !member.getMemberpw().equals("")) {
+			String encoderedPw = pwEncoder.encode(member.getMemberpw());
+			member.setMemberpw(encoderedPw);
+		}
 		int result = dao.updateMember(member);
 		return result == 0 ? false : true;
 	}
@@ -70,8 +73,12 @@ public class MediMemberServiceImpl implements MediMemberService {
 
 	@Override
 	public boolean updateMemberLogin(MediMember member) {
+		if (member.getMemberpw() != null && !member.getMemberpw().equals("")) {
+			String encoderedPw = pwEncoder.encode(member.getMemberpw());
+			member.setMemberpw(encoderedPw);
+		}
 		int result = dao.updateMemberLogin(member);
 		return result == 0 ? false : true;
-	}	
-	
+	}
+
 }
