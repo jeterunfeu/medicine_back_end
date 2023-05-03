@@ -19,19 +19,19 @@
 		m.mednum
 		where membernum = #{membernum}
 		<if test="medname != null">
-			and medname = #{medname}
+			and medname like '%'||#{medname}||'%'
 		</if>
 		<if test="medco != null">
-			and medco = #{medco}
+			and medco like '%'||#{medco}||'%'
 		</if>
 		<if test="signpart != null">
-			and signpart = #{signpart}
+			and signpart like '%'||#{signpart}||'%'
 		</if>
 		<if test="signfirst != null">
-			and signfirst = #{signfirst}
+			and signfirst like '%'||#{signfirst}||'%'
 		</if>
 		<if test="signsecond != null">
-			and signsecond = #{signsecond}
+			and signsecond like '%'||#{signsecond}||'%'
 		</if>
 		order by historynum desc
 	</select>
@@ -47,19 +47,19 @@
 		m.mednum
 		where membernum = #{membernum}
 		<if test="medname != null">
-			and medname = #{medname}
+			and medname like '%'||#{medname}||'%'
 		</if>
 		<if test="medco != null">
-			and medco = #{medco}
+			and medco like '%'||#{medco}||'%'
 		</if>
 		<if test="signpart != null">
-			and signpart = #{signpart}
+			and signpart like '%'||#{signpart}||'%'
 		</if>
 		<if test="signfirst != null">
-			and signfirst = #{signfirst}
+			and signfirst like '%'||#{signfirst}||'%'
 		</if>
 		<if test="signsecond != null">
-			and signsecond = #{signsecond}
+			and signsecond like '%'||#{signsecond}||'%'
 		</if>
 	</select>
 
