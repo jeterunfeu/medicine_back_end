@@ -40,9 +40,6 @@ public class PersonalHistoryController {
 	@GetMapping()
 	public PageNavigator selectAll(@AuthenticationPrincipal UserDetails user, @RequestParam(name="page", defaultValue="1") int page, History history){
 		MediMember person = service.selectOneById(user.getUsername());
-		if(history.getMembernum() != person.getMembernum()) {
-			return null;
-		}
 		history.setMembernum(person.getMembernum());
 		PageNavigator result = service.getPageNavigator(pagePerGroup, countPerPage, page, history);
 		List<History> data = service.selectAll(result, history);
