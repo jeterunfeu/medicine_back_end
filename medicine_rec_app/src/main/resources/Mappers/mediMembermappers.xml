@@ -14,8 +14,8 @@
 		select * from medi_member where membernum = #{membernum}
 	</select>
 
-	<select id="selectOneById" parameterType="MediMember"
-		resultType="String">
+	<select id="selectOneById" parameterType="String"
+		resultType="MediMember">
 		select * from medi_member where memberid = #{memberid}
 	</select>
 
