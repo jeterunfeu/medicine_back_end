@@ -7,12 +7,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Review {
-	int reviewnum;
-	String contents;
-	int evaluate;
+public class ReviewList {
 	int mednum;
-	String memberid;
-	int membernum;
-	String inputdate;
+	String picture;
+	String medname;
+	String medco;
+	int price;
+	String takemed;
+	int medcycle;
+	String ingredient;
+	float star;
+	String note;
+	Object list;
 }

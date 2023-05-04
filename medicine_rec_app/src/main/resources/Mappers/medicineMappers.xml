@@ -82,8 +82,9 @@
 			</where>
 	</select>
 	<select id="selectOne" parameterType="int" resultType="Medicine">
-		select m.mednum, m.medname, m.medco, m.price, m.takemed, m.ingredient, m.note, m.picture, s.signpart, s.signfirst, s.signsecond
-		from medicine m left join show_sign s on m.mednum = s.mednum where m.mednum = #{mednum}
+		select m.mednum, m.medname, m.medco, m.price, m.takemed, m.ingredient, m.note, m.picture, s.signpart, s.signfirst, s.signsecond,
+		(select decode(avg(evaluate), null, 2.5, avg(evaluate)) from review where mednum = m.mednum) 
+		as star from medicine m left join show_sign s on m.mednum = s.mednum where m.mednum = #{mednum}
 	</select>
 	
 	<insert id="insertMedicine" parameterType="Medicine">
