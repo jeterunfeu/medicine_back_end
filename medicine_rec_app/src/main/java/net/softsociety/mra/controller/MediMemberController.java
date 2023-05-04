@@ -42,6 +42,14 @@ public class MediMemberController {
 		
 		return result;
 	}
+	
+	@GetMapping("/info/seq")
+	public int selectSeqByLogin(@AuthenticationPrincipal UserDetails user){
+		
+		Member result = service.selectOneByLogin(user.getUsername());
+		
+		return result.getMembernum();
+	}
 
 	@GetMapping("/{seq}")
 	public MediMember selectOne(@PathVariable("seq") int seq) {
