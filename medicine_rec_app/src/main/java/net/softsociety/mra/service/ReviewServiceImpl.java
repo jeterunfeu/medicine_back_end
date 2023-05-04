@@ -44,7 +44,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public boolean deleteReview(int seq) {
 		boolean result = dao.deleteReview(seq);
-		return false;
+		return result;
 	}
 
 	@Override
