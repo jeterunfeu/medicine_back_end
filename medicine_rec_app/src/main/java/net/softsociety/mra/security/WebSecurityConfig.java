@@ -31,13 +31,14 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
         .authorizeRequests()
-        .antMatchers("/",
-        		"/index.html",
-        		"/signUp.html",
-        		"/member/**",
-                "/asset/**",
-                "/css/**",
-                "/js/**").permitAll()		//설정한 리소스의 접근을 인증절차 없이 허용
+        .antMatchers("/**").permitAll()
+//        .antMatchers("/",
+//        		"/index.html",
+//        		"/signUp.html",
+//        		"/member/**",
+//                "/asset/**",
+//                "/css/**",
+//                "/js/**").permitAll()		//설정한 리소스의 접근을 인증절차 없이 허용
         .anyRequest().authenticated()   	//위의 경로 외에는 모두 로그인을 해야 함
         .and()
         .formLogin()						//일반적인 폼을 이용한 로그인 처리/실패 방법을 사용
