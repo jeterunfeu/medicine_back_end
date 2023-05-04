@@ -37,12 +37,13 @@
 	</select>
 
 	<insert id="insertReview" parameterType="Review">
-		insert into Review
+		insert into review(
 		reviewnum
 		, contents
 		, evaluate
 		, mednum
-		, membernum
+		, membernum)
+		
 		values (
 		review_seq.nextval
 		, #{contents}
