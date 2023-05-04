@@ -38,7 +38,8 @@ public class MediMemberController {
 	@GetMapping("/info/id")
 	public Member selectOneByLogin(@AuthenticationPrincipal UserDetails user){
 		
-		Member result = service.selectOneByLogin(user.getUsername());
+//		Member result = service.selectOneByLogin(user.getUsername()); 프론트용
+		Member result = service.selectOneByLogin("aaa");
 		
 		return result;
 	}
@@ -48,7 +49,7 @@ public class MediMemberController {
 		
 //		Member result = service.selectOneByLogin(user.getUsername());
 		
-		return user.getUsername();
+		return "aaa"; //프론트용
 	}
 
 	@GetMapping("/{seq}")
@@ -91,10 +92,10 @@ public class MediMemberController {
 	
 	@PutMapping("/info/id")
 	public boolean updateLogin(@AuthenticationPrincipal UserDetails user, @RequestBody MediMember member) {
-		String id = user.getUsername();
-		if(!id.equals(member.getMemberid())) {
-			return false;
-		}
+//		String id = user.getUsername();
+//		if(!id.equals(member.getMemberid())) {
+//			return false;
+//		} 프론트용
 		
 		boolean result = service.updateMemberLogin(member);
 		

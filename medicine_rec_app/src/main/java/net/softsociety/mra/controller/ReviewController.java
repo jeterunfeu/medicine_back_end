@@ -75,7 +75,8 @@ public class ReviewController {
 
 	@PostMapping()
 	public boolean insert(@AuthenticationPrincipal UserDetails user, @RequestBody Review review) {
-		MediMember member = uService.selectOneById(user.getUsername());
+//		MediMember member = uService.selectOneById(user.getUsername());
+		MediMember member = uService.selectOneById("aaa"); //프론트용
 		review.setMembernum(member.getMembernum());
 		boolean result = service.insertReview(review);
 		
@@ -84,7 +85,8 @@ public class ReviewController {
 	
 	@PutMapping("/{seq}")
 	public boolean update(@AuthenticationPrincipal UserDetails user, @PathVariable("seq") int seq, @RequestBody Review review) {
-		MediMember member = uService.selectOneById(user.getUsername());
+//		MediMember member = uService.selectOneById(user.getUsername());
+		MediMember member = uService.selectOneById("aaa");//프론트용
 		review.setMembernum(member.getMembernum());
 		review.setReviewnum(seq);
 		boolean result = service.updateReview(review);
