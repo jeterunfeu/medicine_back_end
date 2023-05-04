@@ -57,12 +57,12 @@ public class ReviewController {
 		return result;
 	}
 	
-	@GetMapping()
-	public List<Review> selectAll() {
-		List<Review> result = service.selectAll();
-		
-		return result;
-	}
+//	@GetMapping()
+//	public List<Review> selectAll() {
+//		List<Review> result = service.selectAll();
+//		
+//		return result;
+//	}
 
 	@GetMapping("/{seq}")
 	public Review selectOne(@PathVariable("seq") int seq) {
