@@ -44,11 +44,11 @@ public class MediMemberController {
 	}
 	
 	@GetMapping("/info/seq")
-	public int selectSeqByLogin(@AuthenticationPrincipal UserDetails user){
+	public String selectSeqByLogin(@AuthenticationPrincipal UserDetails user){
 		
-		Member result = service.selectOneByLogin(user.getUsername());
+//		Member result = service.selectOneByLogin(user.getUsername());
 		
-		return result.getMembernum();
+		return user.getUsername();
 	}
 
 	@GetMapping("/{seq}")
