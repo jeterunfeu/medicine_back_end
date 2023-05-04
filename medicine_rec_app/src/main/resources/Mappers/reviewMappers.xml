@@ -11,24 +11,22 @@
 	</select>
 	<select id="selectAllByCondition" parameterType="Review"
 		resultType="Review">
-		select r.reviewnum, r.contents, r.evaluate, r.mednum, m.memberid, r.membernum, r.inputdate from review r 
+		select r.reviewnum, r.contents, r.evaluate, r.mednum, m.memberid,
+		r.membernum, r.inputdate from review r
 		left join medi_member m on r.membernum = m.membernum
-		<where>
-			<if test="contents != null">
-				contents like '%'||#{contents}||'%'
-			</if>
-		</where>
+		where r.mednum = #{mednum}
+		<if test="contents != null">
+			and contents like '%'||#{contents}||'%'
+		</if>
 		order by reviewnum desc
 	</select>
-	<select id="countAll" parameterType="Review"
-		resultType="int">
-		select count(*) from review r 
+	<select id="countAll" parameterType="Review" resultType="int">
+		select count(*) from review r
 		left join medi_member m on r.membernum = m.membernum
-		<where>
-			<if test="contents != null">
-				contents like '%'||#{contents}||'%'
-			</if>
-		</where>
+		where r.mednum = #{mednum}
+		<if test="contents != null">
+			and contents like '%'||#{contents}||'%'
+		</if>
 		order by reviewnum desc
 	</select>
 	<select id="selectOne" parameterType="int" resultType="Review">
@@ -43,13 +41,14 @@
 		, evaluate
 		, mednum
 		, membernum)
-		
+
 		values (
 		review_seq.nextval
 		, #{contents}
 		, #{evaluate}
 		, #{mednum}
-		, #{membernum}
+		,
+		#{membernum}
 		)
 	</insert>
 
@@ -58,7 +57,8 @@
 		contents = #{contents}
 		, evaluate = #{evaluage}
 		, mednum = #{mednum}
-		, membernum = #{membernum}
+		,
+		membernum = #{membernum}
 		where
 		reviewnum = #{reviewnum}
 	</update>
