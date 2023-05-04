@@ -55,7 +55,7 @@
 	<update id="updateReview" parameterType="Review">
 		update review set
 		contents = #{contents}
-		, evaluate = #{evaluage}
+		, evaluate = #{evaluate}
 		, mednum = #{mednum}
 		,
 		membernum = #{membernum}
