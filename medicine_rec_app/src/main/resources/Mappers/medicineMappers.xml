@@ -51,7 +51,8 @@
 		</where>
 	</select>
 	<select id="selectAll3" parameterType="ShowSign" resultType="Medicine">
-		select * from medicine 
+		select mednum, medname, medco, price, takemed, medcycle, ingredient, note, picture, (select decode(avg(evaluate), null, 2.5, avg(evaluate)) from review where mednum = m.mednum) 
+		as star from medicine m  
 			<where>
 				<if test = "signnum != 0">
 					mednum in (select mednum from show_sign where
