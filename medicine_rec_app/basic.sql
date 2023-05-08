@@ -73,7 +73,7 @@ insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient,
 insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'タセノール','富光薬品',3000,'経口摂取',4,'アセトアミノフェン','tacenol.jpg','十二歳以上');
 insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'ペンコル','名門製薬',3000,'経口摂取',4,'アセトアミノフェン','pencol.jpg','十二歳以上');
 insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'パンピリンQ','東亜製薬',3000,'経口摂取',4,'アセトアミノフェン','panpirin.jpg','十二歳以上');
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'パンコルS','藤和薬品',3000,'経口摂取',4,'アセトアミノフェン','pancols.jpg','十二歳以上');
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'パンコルS','東和薬品',3000,'経口摂取',4,'アセトアミノフェン','pancols.jpg','十二歳以上');
 insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '頭','頭痛','頭痛',1);
 insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '頭','頭痛','頭痛',2);
 insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '頭','頭痛','頭痛',3);
@@ -82,3 +82,18 @@ insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(sho
 insert into survey(surveynum, question, truenum,falsenum,signnum) values(survey_seq.nextval, '頭が痛いですか。', 2, 3, null);
 insert into survey(surveynum, question, truenum,falsenum,signnum) values(survey_seq.nextval, null, null, null, 1);
 insert into survey(surveynum, question, truenum,falsenum,signnum) values(survey_seq.nextval, null, null, null, 4);
+
+update medi_member set address='講習貿易会館', history='不整脈', allergy='ステロイド剤', medicine='ベータ遮断剤' where memberid='aaa';
+update medicine set medname='タイレノール', medco='韓国ジョンソンエンドジョンソン', takemed='経口摂取',ingredient='アセトアミノフェン', note=null where mednum=1;
+update medicine set medname='タセノール', medco='富光薬品', takemed='経口摂取',ingredient='アセトアミノフェン', note='十二歳以上' where mednum=2;
+update medicine set medname='ペンコル', medco='名門製薬', takemed='経口摂取',ingredient='アセトアミノフェン', note='十二歳以上' where mednum=3;
+update medicine set medname='パンピリンQ', medco='東亜製薬', takemed='経口摂取',ingredient='アセトアミノフェン', note='十二歳以上' where mednum=4;
+update medicine set medname='パンコルS', medco='東和薬品', takemed='経口摂取',ingredient='アセトアミノフェン', note='十二歳以上' where mednum=5;
+update show_sign set signpart='頭', signfirst='頭痛',signsecond='頭痛' where mednum=1;
+update show_sign set signpart='頭', signfirst='頭痛',signsecond='頭痛' where mednum=2;
+update show_sign set signpart='頭', signfirst='頭痛',signsecond='頭痛' where mednum=3;
+update show_sign set signpart='頭', signfirst='めまい症',signsecond='めまい症' where mednum=4;
+update show_sign set signpart='頭', signfirst='めまい症',signsecond='めまい症' where mednum=5;
+update survey set question='頭が痛いですか。' where surveynum=1;
+
+commit;
