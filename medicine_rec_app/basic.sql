@@ -68,17 +68,17 @@ create table review (
     inputdate           date                    default sysdate
 );
 
-insert into medi_member(membernum, memberid, memberpw,membername, email, phone, address, history, allergy, medicine) values(medi_member_seq.nextval, 'aaa', '{bcrypt}$2a$10$fVWK.WZHd7jtio7rp..IWeAPex8Hus3VqFTcNtbghoa3X6wi4x7y2', 'test','test@gmail.com','010-1111-2222','광주무역회관', '부정맥', '스테로이드계약물', '베타차단제');
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '타이레놀','한국존슨앤드존슨',3000,'경구투여',3,'아세트아미노펜','tylenol.jpg',null);
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '타세놀','부광약품',3000,'경구투여',4,'아세트아미노펜','tacenol.jpg','12세이상');
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '펜콜아정','명문제약',3000,'경구투여',4,'아세트아미노펜','pencol.jpg','12세이상');
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '판피린큐','동아제약',3000,'경구투여',4,'아세트아미노펜','panpirin.jpg','12세이상');
-insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, '판콜에스','동화약품',3000,'경구투여',4,'아세트아미노펜','pancols.jpg','12세이상');
-insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '머리','두통','두통',1);
-insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '머리','두통','두통',2);
-insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '머리','두통','두통',3);
-insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '머리','어지럼증','어지럼증',4);
-insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '머리','어지럼증','어지럼증',5);
-insert into survey(surveynum, question, truenum,falsenum,signnum) values(survey_seq.nextval, '머리가 아프십니까?', 2, 3, null);
+insert into medi_member(membernum, memberid, memberpw,membername, email, phone, address, history, allergy, medicine) values(medi_member_seq.nextval, 'aaa', '{bcrypt}$2a$10$fVWK.WZHd7jtio7rp..IWeAPex8Hus3VqFTcNtbghoa3X6wi4x7y2', 'test','test@gmail.com','010-1111-2222','講習貿易会館', '不整脈', 'ステロイド剤', 'ベータ遮断剤');
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'タイレノール','韓国ジョンソンエンドジョンソン',3000,'経口摂取',3,'アセトアミノフェン','tylenol.jpg',null);
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'タセノール','富光薬品',3000,'経口摂取',4,'アセトアミノフェン','tacenol.jpg','十二歳以上');
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'ペンコル','名門製薬',3000,'経口摂取',4,'アセトアミノフェン','pencol.jpg','十二歳以上');
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'パンピリンQ','東亜製薬',3000,'経口摂取',4,'アセトアミノフェン','panpirin.jpg','十二歳以上');
+insert into medicine(mednum, medname, medco, price, takemed,medcycle,ingredient, picture, note) values(medicine_seq.nextval, 'パンコルS','藤和薬品',3000,'経口摂取',4,'アセトアミノフェン','pancols.jpg','十二歳以上');
+insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '頭','頭痛','頭痛',1);
+insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '頭','頭痛','頭痛',2);
+insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '頭','頭痛','頭痛',3);
+insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '頭','めまい症','めまい症',4);
+insert into show_sign(signnum, signpart, signfirst,signsecond,mednum) values(show_sign_seq.nextval, '頭','めまい症','めまい症',5);
+insert into survey(surveynum, question, truenum,falsenum,signnum) values(survey_seq.nextval, '頭が痛いですか。', 2, 3, null);
 insert into survey(surveynum, question, truenum,falsenum,signnum) values(survey_seq.nextval, null, null, null, 1);
 insert into survey(surveynum, question, truenum,falsenum,signnum) values(survey_seq.nextval, null, null, null, 4);
